@@ -22,8 +22,8 @@ public class Topico {
 
     public Topico(DatosTopico datosTopico) {
         this.motivo = Motivo.fromInputUser(datosTopico.motivo());
-        this.mensaje = datosTopico.mensaje();
+        this.mensaje = datosTopico.mensaje().trim();
         this.curso = Curso.fromInputUser(datosTopico.curso());
-        this.titulo = datosTopico.titulo();
+        this.titulo = datosTopico.titulo().trim();
     }
 }
