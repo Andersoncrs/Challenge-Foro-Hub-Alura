@@ -8,11 +8,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Constraint(validatedBy = CursoValidator.class)
-@Target({ ElementType.FIELD })
+@Constraint(validatedBy = MotivoValidator.class)
+@Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ValidCurso {
-    String message() default "Curso Invalido";
-    Class<?>[] groups() default {};
+public @interface ValidMotivo {
+    String message() default "El Motivo ingresado no es Valido";
+    Class<?>[] groups() default {}; // Para agrupación opcional
     Class<? extends Payload>[] payload() default {};
 }

@@ -2,6 +2,7 @@ package com.anderson.forohub.domain.topico;
 
 
 import com.anderson.forohub.validate.ValidCurso;
+import com.anderson.forohub.validate.ValidMotivo;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -20,6 +21,7 @@ public record DatosTopico(
         String mensaje,
 
         @NotNull
-        Motivo motivo
+        @ValidMotivo
+        String motivo
 ) {
 }

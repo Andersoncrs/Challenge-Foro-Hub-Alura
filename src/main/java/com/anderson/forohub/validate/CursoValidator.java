@@ -10,6 +10,9 @@ public class CursoValidator implements ConstraintValidator<ValidCurso, String> {
 
     @Override
     public boolean isValid(String curso, ConstraintValidatorContext constraintValidatorContext) {
+        if(curso == null){
+            return true;
+        }
         try {
             Curso.valueOf(curso);
             return true;
