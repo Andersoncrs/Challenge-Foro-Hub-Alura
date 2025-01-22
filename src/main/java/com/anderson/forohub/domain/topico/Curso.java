@@ -11,7 +11,7 @@ public enum Curso {
         this.cursoIngresado = cursoIngresado;
     }
 
-    
+
     public static Curso fromInputUser(String cursoIngresado){
         for(Curso curso: values()){
             if(curso.cursoIngresado.equalsIgnoreCase(cursoIngresado)){
@@ -19,5 +19,9 @@ public enum Curso {
             }
         }
         throw new IllegalArgumentException("Valor no Reocnocido: " + cursoIngresado);
+    }
+
+    public String getCursoIngresado(){
+        return cursoIngresado;
     }
 }

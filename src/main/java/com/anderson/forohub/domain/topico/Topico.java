@@ -20,10 +20,10 @@ public class Topico {
     @Enumerated(EnumType.STRING)
     private Motivo motivo;
 
-//    public Topico(DatosTopico datosTopico) {
-//        this.motivo =
-//        this.mensaje = mensaje;
-//        this.curso = curso;
-//        this.titulo = titulo;
-//    }
+    public Topico(DatosTopico datosTopico) {
+        this.motivo = Motivo.fromInputUser(datosTopico.motivo());
+        this.mensaje = datosTopico.mensaje();
+        this.curso = Curso.fromInputUser(datosTopico.curso());
+        this.titulo = datosTopico.titulo();
+    }
 }
