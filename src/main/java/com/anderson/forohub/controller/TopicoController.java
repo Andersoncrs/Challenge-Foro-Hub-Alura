@@ -24,4 +24,9 @@ public class TopicoController {
 
         return topicoService.crearTopico(datosTopico, uriComponentsBuilder);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<MostrarDatosTopico> obtenerTopico(@PathVariable Long id){
+        return topicoService.obtenerTopico(id);
+    }
 }

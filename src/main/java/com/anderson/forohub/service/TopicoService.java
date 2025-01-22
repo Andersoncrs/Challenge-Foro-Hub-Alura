@@ -22,7 +22,13 @@ public class TopicoService {
     public ResponseEntity<MostrarDatosTopico> crearTopico(DatosTopico datosTopico, UriComponentsBuilder uriComponentsBuilder){
         Topico topico = topicoRepository.save(new Topico(datosTopico));
         MostrarDatosTopico mostrarDatosTopico = new MostrarDatosTopico(topico);
-        URI location = uriComponentsBuilder.path("/medicos/{id}").buildAndExpand(topico.getId()).toUri();
+        URI location = uriComponentsBuilder.path("/topicos/{id}").buildAndExpand(topico.getId()).toUri();
         return ResponseEntity.created(location).body(mostrarDatosTopico);
+    }
+
+    public ResponseEntity<MostrarDatosTopico> obtenerTopico(Long id){
+        Topico topico = topicoRepository.getReferenceById(id);
+        MostrarDatosTopico mostrarDatosTopico = new MostrarDatosTopico(topico);
+        return ResponseEntity.ok(mostrarDatosTopico);
     }
 }
