@@ -5,5 +5,17 @@ public enum Motivo {
     QUEJA,
     PROYECTO,
     BUG,
-    SUGERENCIA
+    SUGERENCIA;
+
+
+    public static Motivo fromInputUser(String motivoIngresado){
+        for(Motivo motivo: values()){
+            if(motivo.name().equalsIgnoreCase(motivoIngresado)){
+                return motivo;
+            }
+        }
+        throw new IllegalArgumentException("Motivo no reconocido: " + motivoIngresado);
+    }
 }
+
+

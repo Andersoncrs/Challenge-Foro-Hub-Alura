@@ -14,7 +14,7 @@ public class CursoValidator implements ConstraintValidator<ValidCurso, String> {
             return true;
         }
         try {
-            Curso.valueOf(curso);
+            Curso.fromInputUser(curso.trim());
             return true;
         } catch (IllegalArgumentException e){
             return false;

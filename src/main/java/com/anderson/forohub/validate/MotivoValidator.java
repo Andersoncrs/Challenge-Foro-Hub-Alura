@@ -11,7 +11,7 @@ public class MotivoValidator implements ConstraintValidator<ValidMotivo, String>
             return true;
         }
         try{
-            Motivo.valueOf(motivo);
+            Motivo.fromInputUser(motivo.trim());
             return true;
         } catch (IllegalArgumentException e) {
             return false;

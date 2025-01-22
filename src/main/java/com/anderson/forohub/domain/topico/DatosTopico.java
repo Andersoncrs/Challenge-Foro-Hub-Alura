@@ -14,6 +14,7 @@ public record DatosTopico(
         String titulo,
 
         @NotNull
+        @Pattern(regexp = "^.{0,200}$", message = "{curso.largo}")
         @ValidCurso
         String curso,
 
@@ -22,6 +23,7 @@ public record DatosTopico(
 
         @NotNull
         @ValidMotivo
+        @Pattern(regexp = "^.{0,50}$", message = "{motivo.largo}")
         String motivo
 ) {
 }
