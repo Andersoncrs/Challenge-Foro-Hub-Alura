@@ -1,10 +1,7 @@
 package com.anderson.forohub.validate;
 
-import com.anderson.forohub.domain.topico.Curso;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-
-import java.util.Arrays;
 
 public class CursoValidator implements ConstraintValidator<ValidCurso, String> {
 
