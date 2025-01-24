@@ -36,6 +36,7 @@ public class TopicoService {
     }
 
     public ResponseEntity listarTopicos(Pageable pageable) {
-        return ResponseEntity.ok().build();
+        Page<MostrarDatosTopico> listaTopicos = topicoRepository.findAll(pageable)
+                .map(MostrarDatosTopico::new);
     }
 }
