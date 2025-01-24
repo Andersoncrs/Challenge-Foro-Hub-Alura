@@ -10,8 +10,12 @@ public record MostrarDatosTopico(
         String curso,
         String mensaje,
         String motivo,
+
         @JsonFormat(pattern = "yyyy MMMM dd HH:mm a")
-        LocalDateTime fechaCreacion
+        LocalDateTime fechaCreacion,
+
+        boolean editado,
+        boolean solucionado
 ) {
     public MostrarDatosTopico(Topico topico) {
         this(
@@ -20,7 +24,9 @@ public record MostrarDatosTopico(
                 topico.getCurso().getNombre(),
                 topico.getMensaje(),
                 topico.getMotivo().toString(),
-                topico.getFechaCreacion()
+                topico.getFechaCreacion(),
+                topico.isEditado(),
+                topico.isSolucionado()
         );
     }
 }

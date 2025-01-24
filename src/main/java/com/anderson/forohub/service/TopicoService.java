@@ -1,10 +1,8 @@
 package com.anderson.forohub.service;
 
 import com.anderson.forohub.domain.curso.Curso;
-import com.anderson.forohub.domain.topico.DatosTopico;
-import com.anderson.forohub.domain.topico.MostrarDatosTopico;
-import com.anderson.forohub.domain.topico.Topico;
-import com.anderson.forohub.domain.topico.TopicoRepository;
+import com.anderson.forohub.domain.topico.*;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
@@ -46,5 +44,14 @@ public class TopicoService {
         Page<MostrarDatosTopico> listaTopicos = topicoRepository.findAll(pageable)
                 .map(MostrarDatosTopico::new);
         return ResponseEntity.ok(pagedResourcesAssembler.toModel(listaTopicos));
+    }
+
+    public ResponseEntity<MostrarDatosTopico> actualizarTopico(ActualizarDatosTopico actualizarDatosTopico) {
+        Topico topico = topicoRepository.getReferenceById(actualizarDatosTopico.id());
+        topico.setTitulo(actualizarDatosTopico.titulo());
+        topico.setMensaje(actualizarDatosTopico.mensaje());
+        topico.setEditado(true);
+        Topico topicoActualizado = topicoRepository.save(topico);
+        return ResponseEntity.ok(new MostrarDatosTopico(topicoActualizado));
     }
 }

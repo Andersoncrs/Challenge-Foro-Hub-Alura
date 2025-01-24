@@ -1,6 +1,7 @@
 package com.anderson.forohub.controller;
 
 import com.anderson.forohub.domain.curso.Curso;
+import com.anderson.forohub.domain.topico.ActualizarDatosTopico;
 import com.anderson.forohub.domain.topico.DatosTopico;
 import com.anderson.forohub.domain.topico.MostrarDatosTopico;
 import com.anderson.forohub.service.CursoService;
@@ -45,4 +46,10 @@ public class TopicoController {
         Pageable pageable = PageRequest.of(page.getPageNumber(), 3, Sort.by("fechaCreacion").descending());
         return topicoService.listarTopicos(pageable);
     }
+
+    @PutMapping
+    public ResponseEntity<MostrarDatosTopico> actualizarTopico(@Valid  @RequestBody ActualizarDatosTopico actualizarDatosTopico){
+        return topicoService.actualizarTopico(actualizarDatosTopico);
+    }
+
 }
