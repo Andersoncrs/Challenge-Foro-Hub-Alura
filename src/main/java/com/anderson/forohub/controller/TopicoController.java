@@ -10,6 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -39,9 +41,8 @@ public class TopicoController {
     }
 
     @GetMapping
-    public ResponseEntity listarTopicos(Pageable page){
-        Pageable pageable = PageRequest.of(page.getPageNumber(), 3, Sort.by("titulo"));
-
+    public ResponseEntity<PagedModel<EntityModel<MostrarDatosTopico>>> listarTopicos(Pageable page){
+        Pageable pageable = PageRequest.of(page.getPageNumber(), 3, Sort.by("fechaCreacion").descending());
         return topicoService.listarTopicos(pageable);
     }
 }
