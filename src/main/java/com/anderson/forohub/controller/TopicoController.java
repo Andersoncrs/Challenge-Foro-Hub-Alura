@@ -52,4 +52,9 @@ public class TopicoController {
         return topicoService.actualizarTopico(actualizarDatosTopico);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarTopico(@PathVariable Long id){
+        return topicoService.eliminarTopico(id);
+    }
+
 }

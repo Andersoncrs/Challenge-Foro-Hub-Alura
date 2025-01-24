@@ -2,6 +2,7 @@ package com.anderson.forohub.service;
 
 import com.anderson.forohub.domain.curso.Curso;
 import com.anderson.forohub.domain.topico.*;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -53,5 +54,13 @@ public class TopicoService {
         topico.setEditado(true);
         Topico topicoActualizado = topicoRepository.save(topico);
         return ResponseEntity.ok(new MostrarDatosTopico(topicoActualizado));
+    }
+
+    public ResponseEntity<Void> eliminarTopico(Long id) {
+        if(!topicoRepository.existsById(id)){
+            throw new EntityNotFoundException();
+        }
+        topicoRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
