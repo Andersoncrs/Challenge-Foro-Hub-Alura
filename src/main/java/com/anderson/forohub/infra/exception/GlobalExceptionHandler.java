@@ -38,7 +38,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<MostrarError> cursoExistente(DataIntegrityViolationException e){
-        return ResponseEntity.badRequest().body(new MostrarError("El Curso ya Existe"));
+        return ResponseEntity.badRequest().body(new MostrarError("El Curso Ingresado ya Existe" ));
     }
 
     public record DatosErroraValidacion(String campo, String error){

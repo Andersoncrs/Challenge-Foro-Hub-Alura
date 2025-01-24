@@ -5,10 +5,7 @@ import com.anderson.forohub.domain.curso.MostrarDatosCurso;
 import com.anderson.forohub.service.CursoService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
@@ -25,6 +22,11 @@ public class CursoController {
     public ResponseEntity<MostrarDatosCurso> registrarCurso(@Valid @RequestBody DatosCurso datosCurso,
                                                             UriComponentsBuilder uriComponentsBuilder){
         return cursoService.registrarCurso(datosCurso, uriComponentsBuilder);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<MostrarDatosCurso> mostrarCurso(@PathVariable Long id){
+        return cursoService.mostrarCurso(id);
     }
 
 }

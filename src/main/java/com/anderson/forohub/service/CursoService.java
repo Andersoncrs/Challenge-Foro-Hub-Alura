@@ -29,8 +29,14 @@ public class CursoService {
     public ResponseEntity<MostrarDatosCurso> registrarCurso(DatosCurso datosCurso, UriComponentsBuilder uriComponentsBuilder) {
         Curso curso = cursoRepository.save(new Curso(datosCurso));
         MostrarDatosCurso mostrarDatosCurso = new MostrarDatosCurso(curso);
-        URI location = uriComponentsBuilder.path("/{id}").buildAndExpand(mostrarDatosCurso.id()).toUri();
+        URI location = uriComponentsBuilder.path("/cursos/{id}").buildAndExpand(mostrarDatosCurso.id()).toUri();
         return ResponseEntity.created(location).body(mostrarDatosCurso);
 
+    }
+
+    public ResponseEntity<MostrarDatosCurso> mostrarCurso(Long id) {
+        Curso curso = cursoRepository.getReferenceById(id);
+        MostrarDatosCurso mostrarDatosCurso = new MostrarDatosCurso(curso);
+        return ResponseEntity.ok(mostrarDatosCurso);
     }
 }

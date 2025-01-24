@@ -28,7 +28,9 @@ public class TopicoService {
         this.pagedResourcesAssembler = pagedResourcesAssembler;
     }
 
-    public ResponseEntity<MostrarDatosTopico> crearTopico(DatosTopico datosTopico, Curso curso, UriComponentsBuilder uriComponentsBuilder){
+    public ResponseEntity<MostrarDatosTopico> crearTopico(DatosTopico datosTopico,
+                                                          Curso curso,
+                                                          UriComponentsBuilder uriComponentsBuilder){
         Topico topico = topicoRepository.save(new Topico(datosTopico, curso));
         MostrarDatosTopico mostrarDatosTopico = new MostrarDatosTopico(topico);
         URI location = uriComponentsBuilder.path("/topicos/{id}").buildAndExpand(topico.getId()).toUri();
