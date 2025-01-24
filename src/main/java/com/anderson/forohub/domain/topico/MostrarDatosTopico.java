@@ -11,7 +11,7 @@ public record MostrarDatosTopico(
         this(
                 topico.getId(),
                 topico.getTitulo(),
-                topico.getCurso().getCursoIngresado(),
+                topico.getCurso().getNombre(),
                 topico.getMensaje(),
                 topico.getMotivo().toString()
         );

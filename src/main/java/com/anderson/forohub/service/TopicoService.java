@@ -1,5 +1,6 @@
 package com.anderson.forohub.service;
 
+import com.anderson.forohub.domain.curso.Curso;
 import com.anderson.forohub.domain.topico.DatosTopico;
 import com.anderson.forohub.domain.topico.MostrarDatosTopico;
 import com.anderson.forohub.domain.topico.Topico;
@@ -19,8 +20,8 @@ public class TopicoService {
         this.topicoRepository = topicoRepository;
     }
 
-    public ResponseEntity<MostrarDatosTopico> crearTopico(DatosTopico datosTopico, UriComponentsBuilder uriComponentsBuilder){
-        Topico topico = topicoRepository.save(new Topico(datosTopico));
+    public ResponseEntity<MostrarDatosTopico> crearTopico(DatosTopico datosTopico, Curso curso, UriComponentsBuilder uriComponentsBuilder){
+        Topico topico = topicoRepository.save(new Topico(datosTopico, curso));
         MostrarDatosTopico mostrarDatosTopico = new MostrarDatosTopico(topico);
         URI location = uriComponentsBuilder.path("/topicos/{id}").buildAndExpand(topico.getId()).toUri();
         return ResponseEntity.created(location).body(mostrarDatosTopico);

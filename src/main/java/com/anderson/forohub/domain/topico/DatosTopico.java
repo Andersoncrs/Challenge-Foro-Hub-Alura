@@ -1,7 +1,6 @@
 package com.anderson.forohub.domain.topico;
 
 
-import com.anderson.forohub.validate.ValidCurso;
 import com.anderson.forohub.validate.ValidMotivo;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -15,7 +14,6 @@ public record DatosTopico(
 
         @NotNull
         @Pattern(regexp = "^.{0,200}$", message = "{curso.largo}")
-        @ValidCurso
         String curso,
 
         @NotBlank

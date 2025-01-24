@@ -1,5 +1,6 @@
 package com.anderson.forohub.domain.topico;
 
+import com.anderson.forohub.domain.curso.Curso;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,16 +15,19 @@ public class Topico {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titulo;
-    @Enumerated(EnumType.STRING)
+
+    @ManyToOne
+    @JoinColumn(name = "curso_id")
     private Curso curso;
+
     private String mensaje;
     @Enumerated(EnumType.STRING)
     private Motivo motivo;
 
-    public Topico(DatosTopico datosTopico) {
+    public Topico(DatosTopico datosTopico, Curso curso) {
         this.motivo = Motivo.fromInputUser(datosTopico.motivo());
         this.mensaje = datosTopico.mensaje().trim();
-        this.curso = Curso.fromInputUser(datosTopico.curso());
+        this.curso = curso;
         this.titulo = datosTopico.titulo().trim();
     }
 }
