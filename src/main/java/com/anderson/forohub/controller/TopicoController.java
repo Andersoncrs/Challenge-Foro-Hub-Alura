@@ -6,6 +6,10 @@ import com.anderson.forohub.domain.topico.MostrarDatosTopico;
 import com.anderson.forohub.service.CursoService;
 import com.anderson.forohub.service.TopicoService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -34,4 +38,10 @@ public class TopicoController {
         return topicoService.obtenerTopico(id);
     }
 
+    @GetMapping
+    public ResponseEntity listarTopicos(Pageable page){
+        Pageable pageable = PageRequest.of(page.getPageNumber(), 3, Sort.by("titulo"));
+
+        return topicoService.listarTopicos(pageable);
+    }
 }

@@ -5,6 +5,8 @@ import com.anderson.forohub.domain.topico.DatosTopico;
 import com.anderson.forohub.domain.topico.MostrarDatosTopico;
 import com.anderson.forohub.domain.topico.Topico;
 import com.anderson.forohub.domain.topico.TopicoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -31,5 +33,9 @@ public class TopicoService {
         Topico topico = topicoRepository.getReferenceById(id);
         MostrarDatosTopico mostrarDatosTopico = new MostrarDatosTopico(topico);
         return ResponseEntity.ok(mostrarDatosTopico);
+    }
+
+    public ResponseEntity listarTopicos(Pageable pageable) {
+        return ResponseEntity.ok().build();
     }
 }

@@ -4,6 +4,8 @@ import com.anderson.forohub.domain.curso.Curso;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "topicos")
 @Getter
@@ -24,10 +26,14 @@ public class Topico {
     @Enumerated(EnumType.STRING)
     private Motivo motivo;
 
+    @JoinColumn(name = "fecha_creacion")
+    private LocalDateTime fechaCreacion;
+
     public Topico(DatosTopico datosTopico, Curso curso) {
         this.motivo = Motivo.fromInputUser(datosTopico.motivo());
         this.mensaje = datosTopico.mensaje().trim();
         this.curso = curso;
         this.titulo = datosTopico.titulo().trim();
+        this.fechaCreacion = LocalDateTime.now();
     }
 }
