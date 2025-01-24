@@ -10,7 +10,6 @@ import jakarta.validation.Valid;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.ResponseEntity;
@@ -31,29 +30,29 @@ public class TopicoController {
 
     @PostMapping
     public ResponseEntity<MostrarDatosTopico> crearTopico(@Valid @RequestBody DatosTopico datosTopico,
-                                      UriComponentsBuilder uriComponentsBuilder){
+                                                          UriComponentsBuilder uriComponentsBuilder) {
         Curso curso = cursoService.obtenerCursoPorNombre(datosTopico.curso());
         return topicoService.crearTopico(datosTopico, curso, uriComponentsBuilder);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MostrarDatosTopico> obtenerTopico(@PathVariable Long id){
+    public ResponseEntity<MostrarDatosTopico> obtenerTopico(@PathVariable Long id) {
         return topicoService.obtenerTopico(id);
     }
 
     @GetMapping
-    public ResponseEntity<PagedModel<EntityModel<MostrarDatosTopico>>> listarTopicos(Pageable page){
+    public ResponseEntity<PagedModel<EntityModel<MostrarDatosTopico>>> listarTopicos(Pageable page) {
         Pageable pageable = PageRequest.of(page.getPageNumber(), 3, Sort.by("fechaCreacion").descending());
         return topicoService.listarTopicos(pageable);
     }
 
     @PutMapping
-    public ResponseEntity<MostrarDatosTopico> actualizarTopico(@Valid  @RequestBody ActualizarDatosTopico actualizarDatosTopico){
+    public ResponseEntity<MostrarDatosTopico> actualizarTopico(@Valid @RequestBody ActualizarDatosTopico actualizarDatosTopico) {
         return topicoService.actualizarTopico(actualizarDatosTopico);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarTopico(@PathVariable Long id){
+    public ResponseEntity<Void> eliminarTopico(@PathVariable Long id) {
         return topicoService.eliminarTopico(id);
     }
 

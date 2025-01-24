@@ -49,8 +49,12 @@ public class TopicoService {
 
     public ResponseEntity<MostrarDatosTopico> actualizarTopico(ActualizarDatosTopico actualizarDatosTopico) {
         Topico topico = topicoRepository.getReferenceById(actualizarDatosTopico.id());
-        topico.setTitulo(actualizarDatosTopico.titulo());
-        topico.setMensaje(actualizarDatosTopico.mensaje());
+        if(actualizarDatosTopico.titulo() != null){
+            topico.setTitulo(actualizarDatosTopico.titulo());
+        }
+        if(actualizarDatosTopico.mensaje() != null){
+            topico.setMensaje(actualizarDatosTopico.mensaje());
+        }
         topico.setEditado(true);
         Topico topicoActualizado = topicoRepository.save(topico);
         return ResponseEntity.ok(new MostrarDatosTopico(topicoActualizado));
