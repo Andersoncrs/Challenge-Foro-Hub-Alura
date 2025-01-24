@@ -4,6 +4,9 @@ import com.anderson.forohub.domain.curso.DatosCurso;
 import com.anderson.forohub.domain.curso.MostrarDatosCurso;
 import com.anderson.forohub.service.CursoService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Pageable;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -12,7 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RequestMapping("cursos")
 public class CursoController {
 
-    private CursoService cursoService;
+    private final CursoService cursoService;
 
     public CursoController(CursoService cursoService) {
         this.cursoService = cursoService;
@@ -27,6 +30,11 @@ public class CursoController {
     @GetMapping("/{id}")
     public ResponseEntity<MostrarDatosCurso> mostrarCurso(@PathVariable Long id){
         return cursoService.mostrarCurso(id);
+    }
+
+    @GetMapping
+    public ResponseEntity<PagedModel<EntityModel<MostrarDatosCurso>>> listarCursos(Pageable pageable){
+        return cursoService.listarCursos(pageable);
     }
 
 }

@@ -7,9 +7,7 @@ import com.anderson.forohub.domain.topico.MostrarDatosTopico;
 import com.anderson.forohub.service.CursoService;
 import com.anderson.forohub.service.TopicoService;
 import jakarta.validation.Valid;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.ResponseEntity;
@@ -41,8 +39,7 @@ public class TopicoController {
     }
 
     @GetMapping
-    public ResponseEntity<PagedModel<EntityModel<MostrarDatosTopico>>> listarTopicos(Pageable page) {
-        Pageable pageable = PageRequest.of(page.getPageNumber(), 3, Sort.by("fechaCreacion").descending());
+    public ResponseEntity<PagedModel<EntityModel<MostrarDatosTopico>>> listarTopicos(Pageable pageable) {
         return topicoService.listarTopicos(pageable);
     }
 

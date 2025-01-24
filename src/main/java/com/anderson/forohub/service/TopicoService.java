@@ -5,7 +5,9 @@ import com.anderson.forohub.domain.topico.*;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
@@ -43,7 +45,8 @@ public class TopicoService {
         return ResponseEntity.ok(mostrarDatosTopico);
     }
 
-    public ResponseEntity<PagedModel<EntityModel<MostrarDatosTopico>>> listarTopicos(Pageable pageable) {
+    public ResponseEntity<PagedModel<EntityModel<MostrarDatosTopico>>> listarTopicos(Pageable page) {
+        Pageable pageable = PageRequest.of(page.getPageNumber(), 3, Sort.by("fechaCreacion").descending());
         Page<MostrarDatosTopico> listaTopicos = topicoRepository.findAll(pageable)
                 .map(MostrarDatosTopico::new);
         return ResponseEntity.ok(pagedResourcesAssembler.toModel(listaTopicos));
