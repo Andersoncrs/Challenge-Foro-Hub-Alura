@@ -15,6 +15,10 @@ import lombok.NoArgsConstructor;
 public class Curso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String nombre;
+    private Long id;
+    private String nombre;
+
+    public Curso(DatosCurso datosCurso) {
+        this.nombre = datosCurso.nombre().trim();
+    }
 }

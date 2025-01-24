@@ -1,6 +1,7 @@
 package com.anderson.forohub.infra.exception;
 
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @RestControllerAdvice
@@ -32,6 +34,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<Void> elementoNoEncontrado(EntityNotFoundException e){
         return ResponseEntity.notFound().build();
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<MostrarError> cursoExistente(DataIntegrityViolationException e){
+        return ResponseEntity.badRequest().body(new MostrarError("El Curso ya Existe"));
     }
 
     public record DatosErroraValidacion(String campo, String error){
