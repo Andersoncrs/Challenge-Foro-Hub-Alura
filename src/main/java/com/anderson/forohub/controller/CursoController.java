@@ -43,4 +43,9 @@ public class CursoController {
         return cursoService.actualizarCurso(actualizarDatosCurso);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarCurso(@PathVariable Long id){
+        return cursoService.eliminarCurso(id);
+    }
+
 }

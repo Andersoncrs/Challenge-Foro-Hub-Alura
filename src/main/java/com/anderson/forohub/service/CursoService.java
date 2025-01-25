@@ -2,6 +2,7 @@ package com.anderson.forohub.service;
 
 import com.anderson.forohub.domain.curso.*;
 import com.anderson.forohub.infra.exception.CursoNoEncontradoException;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -61,5 +62,13 @@ public class CursoService {
         }
         Curso cursoActualizado = cursoRepository.save(curso);
         return ResponseEntity.ok(new MostrarDatosCurso(cursoActualizado));
+    }
+
+    public ResponseEntity<Void> eliminarCurso(Long id) {
+        if(!cursoRepository.existsById(id)){
+            throw new EntityNotFoundException();
+        }
+        cursoRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
