@@ -3,7 +3,6 @@ package com.anderson.forohub.service;
 import com.anderson.forohub.domain.curso.*;
 import com.anderson.forohub.infra.exception.CursoNoEncontradoException;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,8 +18,8 @@ import java.net.URI;
 @Service
 public class CursoService {
 
-    private CursoRepository cursoRepository;
-    private PagedResourcesAssembler<MostrarDatosCurso> pagedResourcesAssembler;
+    private final CursoRepository cursoRepository;
+    private final PagedResourcesAssembler<MostrarDatosCurso> pagedResourcesAssembler;
 
     public CursoService(CursoRepository cursoRepository,
                         PagedResourcesAssembler<MostrarDatosCurso> pagedResourcesAssembler) {

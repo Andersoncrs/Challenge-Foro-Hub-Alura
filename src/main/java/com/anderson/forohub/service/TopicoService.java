@@ -20,7 +20,7 @@ import java.net.URI;
 public class TopicoService {
 
     private final TopicoRepository topicoRepository;
-    private PagedResourcesAssembler<MostrarDatosTopico> pagedResourcesAssembler;
+    private final PagedResourcesAssembler<MostrarDatosTopico> pagedResourcesAssembler;
 
     public TopicoService(TopicoRepository topicoRepository,
                          PagedResourcesAssembler<MostrarDatosTopico> pagedResourcesAssembler) {
