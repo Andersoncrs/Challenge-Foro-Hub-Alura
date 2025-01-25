@@ -9,10 +9,11 @@ public record ActualizarDatosTopico(
         @NotNull
         Long id,
 
+        @Pattern(regexp = "^(?!\\s*$).+", message = "{titulo.vacio}")
         @Pattern(regexp = "^.{0,100}$", message = "{titulo.largo}")
         String titulo,
 
-        @Pattern(regexp = "^.+$", message = "{mensaje.vacio}")
+        @Pattern(regexp = "^(?!\\s*$).+", message = "{mensaje.vacio}")
         String mensaje
 ) {
 }

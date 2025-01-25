@@ -8,7 +8,7 @@ public record ActualizarDatosCurso(
         @NotNull
         Long id,
 
-        @Pattern(regexp = "^.+$", message = "{nombre.curso.vacio}")
+        @Pattern(regexp = "^(?!\\s*$).+", message = "{nombre.curso.vacio}")
         @Pattern(regexp = "^.{0,200}$", message = "{curso.largo}")
         String nombre
         ) {
