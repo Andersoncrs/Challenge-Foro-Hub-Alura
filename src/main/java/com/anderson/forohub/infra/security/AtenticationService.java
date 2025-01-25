@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AtenticationService implements UserDetailsService {
 
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
 
     public AtenticationService(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
