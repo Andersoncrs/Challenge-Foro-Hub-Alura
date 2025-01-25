@@ -1,6 +1,7 @@
 package com.anderson.forohub.service;
 
 import com.anderson.forohub.domain.Usuario.DatosAtutenticacionUsuario;
+import com.anderson.forohub.infra.exception.CredencialesInvalidasException;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,12 +18,17 @@ public class AutenticacionService {
         this.authenticationManager = authenticationManager;
     }
 
+
     public ResponseEntity autenticarUsuario(@Valid DatosAtutenticacionUsuario datosAtutenticacionUsuario) {
         Authentication authToken = new UsernamePasswordAuthenticationToken(
-                datosAtutenticacionUsuario.nombreUsuario(),
+                datosAtutenticacionUsuario.nombre(),
                 datosAtutenticacionUsuario.clave()
         );
-        Authentication authentication = authenticationManager.authenticate(authToken);
-        return  ResponseEntity.ok().build();
+        try {
+            Authentication authentication = authenticationManager.authenticate(authToken);
+        }catch (Exception e){
+            throw new CredencialesInvalidasException("Las credenciales Ingresadas no son validas");
+        }
+        return ResponseEntity.ok().build();
     }
 }

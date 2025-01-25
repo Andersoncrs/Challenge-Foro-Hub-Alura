@@ -26,6 +26,11 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(new MostrarError(e.getMessage()));
     }
 
+    @ExceptionHandler(CredencialesInvalidasException.class)
+    public ResponseEntity<MostrarError> credencialesInvalidas(CredencialesInvalidasException e){
+        return ResponseEntity.badRequest().body(new MostrarError(e.getMessage()));
+    }
+
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<MostrarError> jsonInvalido(HttpMessageNotReadableException e){
         return ResponseEntity.badRequest().body(new MostrarError("El JSON enviado no es valido"));
