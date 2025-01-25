@@ -1,5 +1,6 @@
 package com.anderson.forohub.controller;
 
+import com.anderson.forohub.domain.curso.ActualizarDatosCurso;
 import com.anderson.forohub.domain.curso.DatosCurso;
 import com.anderson.forohub.domain.curso.MostrarDatosCurso;
 import com.anderson.forohub.service.CursoService;
@@ -35,6 +36,11 @@ public class CursoController {
     @GetMapping
     public ResponseEntity<PagedModel<EntityModel<MostrarDatosCurso>>> listarCursos(Pageable pageable){
         return cursoService.listarCursos(pageable);
+    }
+
+    @PutMapping
+    public ResponseEntity<MostrarDatosCurso> actuallizarCurso(@Valid @RequestBody ActualizarDatosCurso actualizarDatosCurso){
+        return cursoService.actualizarCurso(actualizarDatosCurso);
     }
 
 }

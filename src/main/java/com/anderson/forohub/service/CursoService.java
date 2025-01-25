@@ -1,10 +1,8 @@
 package com.anderson.forohub.service;
 
-import com.anderson.forohub.domain.curso.Curso;
-import com.anderson.forohub.domain.curso.CursoRepository;
-import com.anderson.forohub.domain.curso.DatosCurso;
-import com.anderson.forohub.domain.curso.MostrarDatosCurso;
+import com.anderson.forohub.domain.curso.*;
 import com.anderson.forohub.infra.exception.CursoNoEncontradoException;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -54,5 +52,14 @@ public class CursoService {
                 .map(MostrarDatosCurso::new);
         return ResponseEntity.ok(pagedResourcesAssembler.toModel(listaCursos));
 
+    }
+
+    public ResponseEntity<MostrarDatosCurso> actualizarCurso( ActualizarDatosCurso actualizarDatosCurso) {
+        Curso curso = cursoRepository.getReferenceById(actualizarDatosCurso.id());
+        if(actualizarDatosCurso.nombre() != null){
+            curso.setNombre(actualizarDatosCurso.nombre());
+        }
+        Curso cursoActualizado = cursoRepository.save(curso);
+        return ResponseEntity.ok(new MostrarDatosCurso(cursoActualizado));
     }
 }
