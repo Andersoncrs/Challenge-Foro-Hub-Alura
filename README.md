@@ -63,9 +63,11 @@ Para ejecutar este proyecto en tu entorno local, sigue los siguientes pasos:
 4. Ejecuta el proyecto.
 
 ## 📸 Imágenes de Petición del Cliente (Insomnia)
-
+![](img/insomnia.png)
+![](img/insomnia2.png)
 ## 📄 Documentación de la API (Swagger)
-
+![](img/swagger.png)
+![](img/Swagger2.png)
 ## 📢 Contacto
 
 Puedes contactarme a través de los siguientes canales:
@@ -78,4 +80,4 @@ Este proyecto está licenciado bajo la Licencia MIT.
 
 ---
 
- ⭐ Espero que este proyecto te haya sido de utilidad. ¡Gracias por tu atención! 
+ ⭐ Espero que este proyecto te haya sido de utilidad. ¡Gracias por tu atención! ⭐
