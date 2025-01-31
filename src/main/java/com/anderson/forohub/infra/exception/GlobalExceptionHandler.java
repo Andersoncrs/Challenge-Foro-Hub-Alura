@@ -1,6 +1,7 @@
 package com.anderson.forohub.infra.exception;
 
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
@@ -46,8 +47,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(new MostrarError("El Curso Ingresado ya Existe" ));
     }
 
-    @ExceptionHandler(JWTCreationException.class)
-    public ResponseEntity<MostrarError> JwtErrorCreacion(JWTCreationException e){
+    @ExceptionHandler({JWTCreationException.class, JWTVerificationException.class})
+    public ResponseEntity<MostrarError> errorJwt(JWTCreationException e){
         return ResponseEntity.internalServerError().body(new MostrarError(e.getMessage()));
     }
 
