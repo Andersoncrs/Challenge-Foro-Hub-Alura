@@ -31,7 +31,7 @@ public class TokenService {
         }
     }
 
-    private Instant establecerExpiracionToken(){
+    private Instant establecerExpiracionToken() {
         return Instant.now().plusSeconds(1800);
     }
 }
