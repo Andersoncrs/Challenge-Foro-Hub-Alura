@@ -16,3 +16,6 @@ hibernate:
 server:
   error:
     include-stacktrace: never
+api:
+  security:
+    secret: ${SECRET_JWT}
