@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 public record MostrarDatosTopico(
         Long id,
         String titulo,
+        String autor,
         String curso,
         String mensaje,
         String motivo,
@@ -21,6 +22,7 @@ public record MostrarDatosTopico(
         this(
                 topico.getId(),
                 topico.getTitulo(),
+                topico.getUsuario().getNombreUsuario(),
                 topico.getCurso().getNombre(),
                 topico.getMensaje(),
                 topico.getMotivo().toString(),

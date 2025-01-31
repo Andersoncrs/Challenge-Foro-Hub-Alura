@@ -1,8 +1,10 @@
 package com.anderson.forohub.domain.topico;
 
+import com.anderson.forohub.domain.Usuario.Usuario;
 import com.anderson.forohub.domain.curso.Curso;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.Authentication;
 
 import java.time.LocalDateTime;
 
@@ -39,7 +41,13 @@ public class Topico {
     @Setter
     private boolean solucionado;
 
-    public Topico(DatosTopico datosTopico, Curso curso) {
+    @ManyToOne
+    @JoinColumn(name= "usuario_id")
+    private Usuario usuario;
+
+
+    public Topico(DatosTopico datosTopico, Curso curso, Usuario usuario) {
+        this.usuario = usuario;
         this.motivo = Motivo.fromInputUser(datosTopico.motivo());
         this.mensaje = datosTopico.mensaje().trim();
         this.curso = curso;

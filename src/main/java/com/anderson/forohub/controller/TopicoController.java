@@ -1,5 +1,6 @@
 package com.anderson.forohub.controller;
 
+import com.anderson.forohub.domain.Usuario.Usuario;
 import com.anderson.forohub.domain.curso.Curso;
 import com.anderson.forohub.domain.topico.ActualizarDatosTopico;
 import com.anderson.forohub.domain.topico.DatosTopico;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -28,9 +30,10 @@ public class TopicoController {
 
     @PostMapping
     public ResponseEntity<MostrarDatosTopico> crearTopico(@Valid @RequestBody DatosTopico datosTopico,
-                                                          UriComponentsBuilder uriComponentsBuilder) {
+                                                          UriComponentsBuilder uriComponentsBuilder,
+                                                          Authentication authentication) {
         Curso curso = cursoService.obtenerCursoPorNombre(datosTopico.curso());
-        return topicoService.crearTopico(datosTopico, curso, uriComponentsBuilder);
+        return topicoService.crearTopico(datosTopico, curso, uriComponentsBuilder, (Usuario) authentication.getPrincipal());
     }
 
     @GetMapping("/{id}")

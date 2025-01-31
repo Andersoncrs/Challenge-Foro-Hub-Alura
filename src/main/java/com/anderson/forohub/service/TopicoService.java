@@ -1,5 +1,6 @@
 package com.anderson.forohub.service;
 
+import com.anderson.forohub.domain.Usuario.Usuario;
 import com.anderson.forohub.domain.curso.Curso;
 import com.anderson.forohub.domain.topico.*;
 import jakarta.persistence.EntityNotFoundException;
@@ -11,6 +12,7 @@ import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -30,8 +32,10 @@ public class TopicoService {
 
     public ResponseEntity<MostrarDatosTopico> crearTopico(DatosTopico datosTopico,
                                                           Curso curso,
-                                                          UriComponentsBuilder uriComponentsBuilder) {
-        Topico topico = topicoRepository.save(new Topico(datosTopico, curso));
+                                                          UriComponentsBuilder uriComponentsBuilder,
+                                                          Usuario usuario
+                                                          ) {
+        Topico topico = topicoRepository.save(new Topico(datosTopico, curso, usuario));
         MostrarDatosTopico mostrarDatosTopico = new MostrarDatosTopico(topico);
         URI location = uriComponentsBuilder.path("/topicos/{id}").buildAndExpand(topico.getId()).toUri();
         return ResponseEntity.created(location).body(mostrarDatosTopico);
