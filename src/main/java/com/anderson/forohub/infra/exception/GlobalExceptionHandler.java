@@ -3,6 +3,7 @@ package com.anderson.forohub.infra.exception;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -52,6 +53,10 @@ public class GlobalExceptionHandler {
         return ResponseEntity.internalServerError().body(new MostrarError(e.getMessage()));
     }
 
+    @ExceptionHandler(UsuarioNoAutorException.class)
+    public ResponseEntity<MostrarError> UsuarioNoAutorTopico(UsuarioNoAutorException e){
+        return ResponseEntity.status(HttpServletResponse.SC_UNAUTHORIZED).body(new MostrarError(e.getMessage()));
+    }
     public record DatosErroraValidacion(String campo, String error){
         public DatosErroraValidacion(FieldError fieldError) {
             this(fieldError.getField(), fieldError.getDefaultMessage());

@@ -3,7 +3,9 @@ package com.anderson.forohub.service;
 import com.anderson.forohub.domain.Usuario.Usuario;
 import com.anderson.forohub.domain.curso.Curso;
 import com.anderson.forohub.domain.topico.*;
+import com.anderson.forohub.infra.exception.UsuarioNoAutorException;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -73,5 +75,15 @@ public class TopicoService {
         }
         topicoRepository.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    public void comprobarUsuarioAutorTopico(
+            ActualizarDatosTopico actualizarDatosTopico,
+            Authentication authentication) {
+        Topico topico = topicoRepository.getReferenceById(actualizarDatosTopico.id());
+        if(!topico.getUsuario().getNombreUsuario().equals(authentication.getName())){
+            throw new UsuarioNoAutorException("El usuario no es el Autor del Topico");
+        }
+        return;
     }
 }

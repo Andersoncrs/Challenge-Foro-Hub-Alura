@@ -47,7 +47,10 @@ public class TopicoController {
     }
 
     @PutMapping
-    public ResponseEntity<MostrarDatosTopico> actualizarTopico(@Valid @RequestBody ActualizarDatosTopico actualizarDatosTopico) {
+    public ResponseEntity<MostrarDatosTopico> actualizarTopico(
+            @Valid @RequestBody ActualizarDatosTopico actualizarDatosTopico,
+            Authentication authentication) {
+        topicoService.comprobarUsuarioAutorTopico(actualizarDatosTopico, authentication);
         return topicoService.actualizarTopico(actualizarDatosTopico);
     }
 
