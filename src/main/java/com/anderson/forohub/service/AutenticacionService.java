@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class AutenticacionService {
 
     private final AuthenticationManager authenticationManager;
-    private TokenService tokenService;
+    private final TokenService tokenService;
 
     public AutenticacionService(AuthenticationManager authenticationManager, TokenService tokenService) {
         this.authenticationManager = authenticationManager;
