@@ -78,9 +78,9 @@ public class TopicoService {
     }
 
     public void comprobarUsuarioAutorTopico(
-            ActualizarDatosTopico actualizarDatosTopico,
+            Long idTopico,
             Authentication authentication) {
-        Topico topico = topicoRepository.getReferenceById(actualizarDatosTopico.id());
+        Topico topico = topicoRepository.getReferenceById(idTopico);
         if(!topico.getUsuario().getNombreUsuario().equals(authentication.getName())){
             throw new UsuarioNoAutorException("El usuario no es el Autor del Topico");
         }

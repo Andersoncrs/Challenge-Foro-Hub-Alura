@@ -50,12 +50,15 @@ public class TopicoController {
     public ResponseEntity<MostrarDatosTopico> actualizarTopico(
             @Valid @RequestBody ActualizarDatosTopico actualizarDatosTopico,
             Authentication authentication) {
-        topicoService.comprobarUsuarioAutorTopico(actualizarDatosTopico, authentication);
+        topicoService.comprobarUsuarioAutorTopico(actualizarDatosTopico.id(), authentication);
         return topicoService.actualizarTopico(actualizarDatosTopico);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarTopico(@PathVariable Long id) {
+    public ResponseEntity<Void> eliminarTopico(
+            @PathVariable Long id,
+            Authentication authentication) {
+        topicoService.comprobarUsuarioAutorTopico(id, authentication);
         return topicoService.eliminarTopico(id);
     }
 
