@@ -5,7 +5,6 @@ import com.anderson.forohub.infra.security.DatosJwtToken;
 import com.anderson.forohub.service.AutenticacionService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +26,6 @@ public class AutenticacionController {
     public ResponseEntity<DatosJwtToken> autenticarUsuario(
             @Valid @RequestBody DatosAtutenticacionUsuario datosAtutenticacionUsuario
     ) {
-        return  autenticacionService.autenticarUsuario(datosAtutenticacionUsuario);
+        return autenticacionService.autenticarUsuario(datosAtutenticacionUsuario);
     }
 }
