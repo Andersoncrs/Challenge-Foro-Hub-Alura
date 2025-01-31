@@ -1,6 +1,7 @@
 package com.anderson.forohub.controller;
 
 import com.anderson.forohub.domain.Usuario.DatosAtutenticacionUsuario;
+import com.anderson.forohub.infra.security.DatosJwtToken;
 import com.anderson.forohub.service.AutenticacionService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -16,14 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("login")
 public class AutenticacionController {
 
-    private AutenticacionService autenticacionService;
+    private final AutenticacionService autenticacionService;
 
     public AutenticacionController(AutenticacionService autenticacionService) {
         this.autenticacionService = autenticacionService;
     }
 
     @PostMapping
-    public ResponseEntity autenticarUsuario(
+    public ResponseEntity<DatosJwtToken> autenticarUsuario(
             @Valid @RequestBody DatosAtutenticacionUsuario datosAtutenticacionUsuario
     ) {
         return  autenticacionService.autenticarUsuario(datosAtutenticacionUsuario);
