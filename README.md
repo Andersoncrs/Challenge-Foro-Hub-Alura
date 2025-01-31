@@ -24,7 +24,7 @@ En este proyecto, se han aplicado los siguientes conocimientos y tecnologías:
 - **PostgreSQL**: Base de datos relacional utilizada para almacenar la información del foro.
 - **Swagger**: Utilizado para la documentación de la API.
 - **Insomnia**: Herramienta utilizada para probar las peticiones a la API.
-- **Lombok**: Biblioteca utilizada para reducir el código boilerplate.
+- **Lombok**: Biblioteca utilizada para reducir el código.
 - **Flyway**: Herramienta utilizada para la migración de la base de datos.
 
 ## 🚀 Funcionalidades
