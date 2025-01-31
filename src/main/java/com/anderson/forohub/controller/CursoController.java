@@ -5,6 +5,7 @@ import com.anderson.forohub.domain.curso.DatosCurso;
 import com.anderson.forohub.domain.curso.MostrarDatosCurso;
 import com.anderson.forohub.service.CursoService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.EntityModel;
@@ -16,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 @RequestMapping("cursos")
 @SecurityRequirement(name = "bearer-key")
+@Tag(name = "📑 Curso")
 public class CursoController {
 
     private final CursoService cursoService;

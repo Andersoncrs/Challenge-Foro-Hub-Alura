@@ -7,8 +7,11 @@ import com.anderson.forohub.domain.topico.DatosTopico;
 import com.anderson.forohub.domain.topico.MostrarDatosTopico;
 import com.anderson.forohub.service.CursoService;
 import com.anderson.forohub.service.TopicoService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springframework.core.annotation.Order;
 import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
@@ -20,6 +23,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 @RequestMapping("topicos")
 @SecurityRequirement(name = "bearer-key")
+@Tag( name = "📚 Tópico")
 public class TopicoController {
 
     private final TopicoService topicoService;

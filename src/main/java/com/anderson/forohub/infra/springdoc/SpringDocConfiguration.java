@@ -8,6 +8,7 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
+import io.swagger.v3.oas.models.tags.Tag;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -39,6 +40,16 @@ public class SpringDocConfiguration {
                 .servers(List.of(new Server().url("http://localhost:8080").description("Servidor Local")))
                 .externalDocs(new ExternalDocumentation()
                         .description("Enlace de GitHub del Proyecto")
-                        .url("https://github.com/Andersoncrs/Challenge-Foro-Hub-Alura"));
+                        .url("https://github.com/Andersoncrs/Challenge-Foro-Hub-Alura"))
+                .tags(List.of(
+                        new Tag()
+                                .name("🔐 Autenticación")
+                                .description("Comprueba las credenciales ingresadas y retorna un JWT Token"),
+                        new Tag()
+                                .name("📚 Tópico")
+                                .description("Permite realizar operaciones CRUD sobre los Tópicos"),
+                        new Tag()
+                                .name("📑 Curso")
+                                .description("Permite realizar operaciones CRUD sobre los Cursos")));
     }
 }
