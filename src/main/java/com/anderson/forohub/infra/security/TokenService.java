@@ -13,20 +13,25 @@ import java.time.Instant;
 public class TokenService {
     @Value("${api.security.secret")
     private String secret;
+    private final String emisorToken = "foro-hub";
 
-    public String generarToken(Usuario usuario){
+    public String generarToken(Usuario usuario) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
 
             return JWT.create()
-                    .withIssuer("foro-hub")
+                    .withIssuer(emisorToken)
                     .withSubject(usuario.getNombreUsuario())
                     .withClaim("id", usuario.getId())
                     .withIssuedAt(Instant.now())
-                    .withExpiresAt(Instant.now().plusSeconds(1800))
+                    .withExpiresAt(establecerExpiracionToken())
                     .sign(algorithm);
-        } catch (JWTCreationException exception){
+        } catch (JWTCreationException exception) {
             throw new JWTCreationException("Hubo un Error al momento de crear el Token", exception);
         }
+    }
+
+    private Instant establecerExpiracionToken(){
+        return Instant.now().plusSeconds(1800);
     }
 }
