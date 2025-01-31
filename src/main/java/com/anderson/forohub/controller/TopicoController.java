@@ -7,6 +7,7 @@ import com.anderson.forohub.domain.topico.DatosTopico;
 import com.anderson.forohub.domain.topico.MostrarDatosTopico;
 import com.anderson.forohub.service.CursoService;
 import com.anderson.forohub.service.TopicoService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.EntityModel;
@@ -18,6 +19,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("topicos")
+@SecurityRequirement(name = "bearer-key")
 public class TopicoController {
 
     private final TopicoService topicoService;
